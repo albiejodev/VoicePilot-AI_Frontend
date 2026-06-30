@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { websocketService } from "../services/websocket.service";
 
 interface UseMicrophoneProps {
   onAudioChunk?: (chunk: Blob) => void;
@@ -20,6 +21,8 @@ export const useMicrophone = ({ onAudioChunk}: UseMicrophoneProps = {}) => {
 
       streamRef.current = stream;
 
+      websocketService.startRecordingSession();
+
       const recorder = new MediaRecorder(stream);
 
       recorder.ondataavailable = (event) => {
@@ -39,6 +42,8 @@ export const useMicrophone = ({ onAudioChunk}: UseMicrophoneProps = {}) => {
   };
 
   const stopRecording = () => {
+    websocketService.stopRecordingSession();
+    
     mediaRecorderRef.current?.stop();
 
     streamRef.current?.getTracks().forEach((track) => track.stop());

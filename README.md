@@ -1,73 +1,364 @@
-# React + TypeScript + Vite
+# 🎨 VoicePilot AI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
 
-Currently, two official plugins are available:
+**Modern React Voice Interface for VoicePilot AI**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Real-time voice conversations • Live transcripts • AI responses • Appointment booking
 
-## React Compiler
+</p>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+# 🚀 Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The VoicePilot AI Frontend is a React application that demonstrates the complete real-time AI receptionist workflow.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+It captures microphone audio, streams it to the backend over WebSockets, displays live transcripts, renders the conversation history, plays AI-generated speech, and displays appointment confirmations.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+The frontend is intentionally lightweight and focuses on showcasing the AI workflow.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+While the current demo uses a browser microphone, the backend architecture supports replacing the browser with **Twilio Media Streams** to enable real phone calls.
+
+---
+
+# 🛠 Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Framework | React |
+| Language | TypeScript |
+| Build Tool | Vite |
+| Communication | WebSocket |
+| Audio Recording | MediaRecorder API |
+| Styling | React Inline Styles |
+| Voice Streaming | WebSocket |
+
+---
+
+# ✨ Features
+
+- ✅ Browser microphone recording
+- ✅ Real-time audio streaming
+- ✅ Live transcript
+- ✅ AI conversation history
+- ✅ Voice playback
+- ✅ Assistant status indicator
+- ✅ Appointment confirmation card
+- ✅ Responsive dashboard layout
+- ✅ WebSocket communication
+
+---
+
+# 🖥 UI Preview
+
+---
+
+## Home Screen
+
+> *(Add Screenshot)*
+
+---
+
+## Live Conversation
+
+> *(Add Screenshot)*
+
+---
+
+## AI Thinking
+
+> *(Add Screenshot)*
+
+---
+
+## Appointment Booked
+
+> *(Add Screenshot)*
+
+---
+
+## Google Calendar Confirmation
+
+> *(Add Screenshot)*
+
+---
+
+# 🎥 Demo GIF
+
+> *(Add GIF here)*
+
+---
+
+# 🏗 Frontend Architecture
+
+```text
+                 React Application
+
+                       │
+
+          Voice Recorder Component
+
+                       │
+
+          MediaRecorder API
+
+                       │
+
+                Audio Chunks
+
+                       │
+
+                WebSocket Client
+
+                       │
+
+                FastAPI Backend
+
+                       │
+
+      Deepgram → Gemini → Redis
+
+                       │
+
+              ElevenLabs Audio
+
+                       │
+
+             Browser Audio Player
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 🔄 Frontend Workflow
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+User clicks Start Recording
+
+            │
+
+            ▼
+
+Browser Microphone
+
+            │
+
+            ▼
+
+MediaRecorder API
+
+            │
+
+Audio Chunks
+
+            │
+
+            ▼
+
+WebSocket
+
+            │
+
+            ▼
+
+FastAPI Backend
+
+            │
+
+Deepgram
+
+            │
+
+Gemini
+
+            │
+
+ElevenLabs
+
+            │
+
+            ▼
+
+Browser Speaker
+
+            │
+
+Conversation Updated
 ```
+
+---
+
+# 📂 Folder Structure
+
+```text
+frontend/
+
+│
+
+├── src/
+
+│   ├── assets/
+
+│   ├── components/
+
+│   │      ├── VoiceRecorder.tsx
+│   │      └── ...
+
+│   ├── hooks/
+
+│   │      ├── useMicrophone.ts
+│   │      └── ...
+
+│   ├── services/
+
+│   │      ├── websocket.service.ts
+│   │      └── ...
+
+│   ├── utils/
+
+│   ├── App.tsx
+
+│   └── main.tsx
+
+│
+
+├── public/
+
+├── package.json
+
+└── README.md
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone <repository-url>
+
+cd frontend
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run the development server
+
+```bash
+npm run dev
+```
+
+---
+
+# 🌐 Backend Connection
+
+The frontend communicates with the backend over WebSockets.
+
+Current endpoint
+
+```text
+ws://localhost:8000/ws/{session_id}
+```
+
+---
+
+# 🎯 Demo Workflow
+
+1. Start the backend server.
+2. Launch the frontend.
+3. Click **Start Recording**.
+4. Introduce yourself.
+5. Ask **"What is my name?"** to demonstrate conversation memory.
+6. Book an appointment.
+7. View the appointment confirmation card.
+8. Verify the event in Google Calendar.
+9. Continue the conversation.
+
+---
+
+# 🎨 UI Components
+
+- Voice Recorder
+- Live Transcript Card
+- Conversation History
+- Assistant Status Card
+- Appointment Confirmation Card
+- Wave Animation
+- Connection Indicator
+
+---
+
+# 📞 Why Browser Instead of Phone?
+
+The browser client was intentionally chosen to rapidly prototype and demonstrate the complete AI workflow during development.
+
+The backend was designed to be **transport-agnostic**, meaning the browser can later be replaced with **Twilio Media Streams** without significant backend changes.
+
+Future architecture
+
+```text
+Phone
+
+   │
+
+Twilio Media Streams
+
+   │
+
+FastAPI Backend
+
+   │
+
+Current AI Pipeline
+```
+
+---
+
+# 💡 Challenges & Learnings
+
+Building the frontend involved solving challenges such as:
+
+- Streaming microphone audio
+- Real-time WebSocket communication
+- Managing recording states
+- Synchronizing AI responses
+- Rendering live transcripts
+- Audio playback
+- Building a conversational dashboard
+- Integrating browser media APIs
+
+---
+
+# 🛣 Future Roadmap
+
+- 📞 Twilio Phone Calls
+- 📱 Mobile Responsive UI
+- 🎨 Improved Animations
+- 🌍 Multi-language Interface
+- 📊 Conversation Analytics
+- 🔐 Authentication
+- 📁 Conversation History
+- ☁ Production Deployment
+
+---
+
+# 🙏 Acknowledgements
+
+- React
+- Vite
+- TypeScript
+- FastAPI
+- Gemini
+- Deepgram
+- ElevenLabs
+
+---
+
+# 📄 License
+
+MIT License

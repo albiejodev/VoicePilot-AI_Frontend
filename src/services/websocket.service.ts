@@ -56,8 +56,6 @@ class WebSocketService {
     };
   }
 
-
-
   on(event: string, callback: (data: any) => void) {
     const listeners = this.listeners.get(event) || [];
 
@@ -94,6 +92,22 @@ class WebSocketService {
   disconnect() {
     this.socket?.close();
     this.socket = null;
+  }
+
+  startRecordingSession() {
+    this.send(
+        JSON.stringify({
+            type: "start_recording",
+        })
+    );
+}
+
+  stopRecordingSession() {
+      this.send(
+          JSON.stringify({
+              type: "stop_recording",
+          })
+      );
   }
 }
 

@@ -1,4 +1,4 @@
-# 🎨 VoicePilot AI Frontend
+# 🎨 VoicePilot AI Web Client
 
 <p align="center">
 
